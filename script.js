@@ -6,12 +6,14 @@ var y = canvas.height-30;
 var dx = 2;
 var dy = -2;
 
-
 function drawBall() {
     ball.beginPath();
     ball.arc(x, y, 10, 0, Math.PI*2);
-    ball.fillStyle='red'
-    ball.fill();
+    function randomColor() {
+        ball.fillStyle= '#'+ Math.floor(Math.random()*16777215).toString(16);
+        ball.fill();
+    }
+    ball.fillStyle=randomColor()
 }
 
 var ballRadius = 10;
@@ -26,14 +28,12 @@ function draw() {
     if(y + dy > canvas.height-ballRadius || y + dy < ballRadius) {
         dy = -dy;
     }
-    
     x += dx;
     y += dy;
 }
 
 var t=10
 var interval= setInterval(draw, t);
-
 
 function pause(){
     clearInterval(interval);
@@ -49,16 +49,12 @@ function play(){
 }
 function acc(){
 document.getElementById('btn1').style.display='none'
-   for(let i=t;i<30;i=i+5){
-    draw()
-    interval=setInterval(draw,i)
-   }
+    for(let i=t;i<30;i=i+5){
+        draw()
+        interval=setInterval(draw,i)
+    }
 }
 
 function reset(){
     location.reload();
 }
-
-
-
-
